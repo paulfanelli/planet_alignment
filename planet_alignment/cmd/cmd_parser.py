@@ -29,7 +29,7 @@ class CommandParser(object):
                             action='store',
                             dest='config',
                             help='Planet alignment configuration file',
-                            metavar='FILE',
+                            metavar='CONFIG_FILE',
                             required=True,
                             type=lambda arg: self._is_valid_file(arg))
 
@@ -38,6 +38,7 @@ class CommandParser(object):
                             action='store',
                             dest='plugins',
                             help='List of plugin python files',
+                            metavar='PLUGINS.py',
                             nargs='+',
                             required=True,
                             type=lambda arg: self._is_valid_filelist(arg, extension='py'))
