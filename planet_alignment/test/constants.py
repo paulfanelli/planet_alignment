@@ -15,3 +15,4 @@ TEST_ETC_DIR = path.get_test_etc_dir()
 
 TEST_SYSTEM_YAML = join(TEST_ETC_DIR, 'system.yaml')
 TEST_BAD_CONFIG_FILE = join(TEST_ETC_DIR, 'foo.py')
+TEST_WRONG_PLUGIN_FILE_TYPE = join(TEST_ETC_DIR, 'foo.txt')
