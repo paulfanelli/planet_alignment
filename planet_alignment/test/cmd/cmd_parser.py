@@ -46,3 +46,16 @@ def test_valid_options(fix_parser):
     assert parsed.config == config_file
     assert parsed.plugins == plugins_list
     assert parsed.time == 10
+
+def test_valid_options_short_opts(fix_parser):
+    test_etc_dir = constants.TEST_ETC_DIR
+    config_file = constants.TEST_SYSTEM_YAML
+    plugins = '{0}/foo.py {0}/bar.py'.format(test_etc_dir)
+    plugins_list = [
+        '{}/foo.py'.format(test_etc_dir),
+        '{}/bar.py'.format(test_etc_dir)
+    ]
+    parsed = fix_parser.parse('-c {} -p {} -t 10'.format(config_file, plugins).split())
+    assert parsed.config == config_file
+    assert parsed.plugins == plugins_list
+    assert parsed.time == 10
