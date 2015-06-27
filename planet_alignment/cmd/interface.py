@@ -12,4 +12,7 @@ from zope.interface import Interface
 
 
 class ICommandParser(Interface):
-   """An interface to a command parser"""
+    """An interface to a command parser"""
+
+    def parse(args):
+        """Parse the command-line arguments"""
