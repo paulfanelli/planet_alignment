@@ -24,8 +24,8 @@ class CommandParser(object):
     def _create_parser(self):
         parser = argparse.ArgumentParser(description='Planet Alignment application',
                                          formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-        parser.add_argument('-c',
-                            '--config',
+        parser.add_argument('--config',
+                            '-c',
                             action='store',
                             dest='config',
                             help='Planet alignment configuration file',
@@ -33,8 +33,8 @@ class CommandParser(object):
                             required=True,
                             type=lambda arg: self._is_valid_file(arg))
 
-        parser.add_argument('-p',
-                            '--plugins',
+        parser.add_argument('--plugins',
+                            '-p',
                             action='store',
                             dest='plugins',
                             help='List of plugin python files',
@@ -43,8 +43,8 @@ class CommandParser(object):
                             required=True,
                             type=lambda arg: self._is_valid_filelist(arg, extension='py'))
 
-        parser.add_argument('-t',
-                            '--time',
+        parser.add_argument('--time',
+                            '-t',
                             action='store',
                             dest='time',
                             help='The time to calculate the planet alignment for',
