@@ -1,7 +1,7 @@
 """
 .. module:: cmd_parser
    :platform: linux
-   :synopsis: 
+   :synopsis: Module to handle command-line argument parsing.
 
 .. moduleauthor:: Paul Fanelli <paul.fanelli@gmail.com>
 
