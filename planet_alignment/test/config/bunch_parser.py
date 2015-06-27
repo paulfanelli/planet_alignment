@@ -37,4 +37,4 @@ def test_parse_bad_file(fix_parser, capsys):
 def test_parse_config_file(fix_parser):
     config_file = constants.TEST_SYSTEM_YAML
     b = fix_parser.parse(config_file)
-    assert isinstance(b, Bunch) is True
+    assert isinstance(b, Bunch)
