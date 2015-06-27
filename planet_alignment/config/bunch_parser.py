@@ -31,7 +31,7 @@ class BunchParser(object):
         except ParserError as pe:
             print("ERROR: Error parsing the configuration file '{}'!".format(path))
             sys.exit("ERROR: {}".format(pe))
-        except Exception, e:
+        except Exception as e:
             print("ERROR: Unknown exception '{}'".format(e))
             sys.exit("ERROR: {}".format(e))
         return self._data
