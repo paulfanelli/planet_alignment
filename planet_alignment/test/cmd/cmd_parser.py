@@ -18,20 +18,26 @@ def fix_parser():
     return CommandParser()
 
 
-def test_nonexistent_config_file(fix_parser):
+def test_nonexistent_config_file(fix_parser, capsys):
     with pytest.raises(SystemExit):
         fix_parser.parse('--config foobar'.split())
+    out, err = capsys.readouterr()
+    assert "usage:" in str(err)
 
 
-def test_nonexistent_plugins_file(fix_parser):
+def test_nonexistent_plugins_file(fix_parser, capsys):
     with pytest.raises(SystemExit):
         fix_parser.parse('--plugins abc.py'.split())
+    out, err = capsys.readouterr()
+    assert "usage:" in str(err)
 
 
-def test_wrong_type_plugins_file(fix_parser):
+def test_wrong_type_plugins_file(fix_parser, capsys):
     with pytest.raises(SystemExit):
         foo_txt_file = constants.TEST_WRONG_PLUGIN_FILE_TYPE
         fix_parser.parse('--plugins {}'.format(foo_txt_file).split())
+    out, err = capsys.readouterr()
+    assert "usage:" in str(err)
 
 
 def test_valid_options(fix_parser):
@@ -46,6 +52,7 @@ def test_valid_options(fix_parser):
     assert parsed.config == config_file
     assert parsed.plugins == plugins_list
     assert parsed.time == 10
+
 
 def test_valid_options_short_opts(fix_parser):
     test_etc_dir = constants.TEST_ETC_DIR
