@@ -31,7 +31,7 @@ class CommandParser(object):
                             help='Planet alignment configuration file',
                             metavar='FILE',
                             required=True,
-                            type=lambda arg: self.is_valid_file(arg))
+                            type=lambda arg: self._is_valid_file(arg))
 
         parser.add_argument('-p',
                             '--plugins',
@@ -40,7 +40,7 @@ class CommandParser(object):
                             help='List of plugin python files',
                             nargs='+',
                             required=True,
-                            type=lambda arg: self.is_valid_filelist(arg, extension='py'))
+                            type=lambda arg: self._is_valid_filelist(arg, extension='py'))
 
         parser.add_argument('-t',
                             '--time',
@@ -52,7 +52,7 @@ class CommandParser(object):
         self._parser = parser
         return self
 
-    def is_valid_file(self, arg, extension=None):
+    def _is_valid_file(self, arg, extension=None):
         """Validate that the argument passed is a valid file on the system"""
         arg = os.path.abspath(arg)
         if os.path.exists(arg):
@@ -68,7 +68,7 @@ class CommandParser(object):
             err = "The file '{}' does not exist".format(arg)
             self._parser.error(err)
 
-    def is_valid_filelist(self, arg, extension=None):
+    def _is_valid_filelist(self, arg, extension=None):
         """Validate that the argument passed is a valid file list"""
         arglist = []
         if isinstance(arg, str):
@@ -81,7 +81,7 @@ class CommandParser(object):
 
         retval_list = []
         for arg in arglist:
-            arg = self.is_valid_file(arg, extension=extension)
+            arg = self._is_valid_file(arg, extension=extension)
             retval_list.append(arg)
         return ','.join(retval_list)
 
