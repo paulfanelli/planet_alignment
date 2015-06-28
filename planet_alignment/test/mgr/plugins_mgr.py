@@ -99,6 +99,11 @@ def test_align1_get_plugin_instance_by_path(fix_align1):
     assert "are_planets_aligned" in dir(inst)
 
 
+def test_align1_get_plugin_name_by_path(fix_align1):
+    name = fix_align1.get_plugin_name_by_path(constants.TEST_PLUGIN_ALIGN1)
+    assert name == 'align1'
+
+
 def test_base_get_plugin_class_name(fix_base):
     mod = fix_base._get_plugin_module_by_path(constants.TEST_PLUGIN_BASE)
     clsname = fix_base._get_plugin_class_name(mod)
@@ -119,3 +124,13 @@ def test_base_get_plugin_instance_by_path(fix_base):
     assert c == '__class__'
     assert isinstance(t, type)
     assert "are_planets_aligned" in dir(inst)
+
+
+def test_base_get_plugin_name_by_path(fix_base):
+    name = fix_base.get_plugin_name_by_path(constants.TEST_PLUGIN_BASE)
+    assert name == 'base'
+
+
+def test_base_get_plugin_name_by_path_bad_name(fix_base):
+    with pytest.raises(KeyError):
+        fix_base.get_plugin_name_by_path("bad_name")
