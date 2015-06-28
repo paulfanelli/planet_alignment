@@ -17,9 +17,7 @@ def main(argv):
     cmd_args = CommandParser().parse(argv)
     app = AppFactory(cmd_args).create()
     results = app.run()
-    print('\n')
-    for line in results:
-        print(line)
+    app.print_results(results)
 
 
 if __name__ == "__main__":

@@ -63,3 +63,9 @@ class App(object):
                 result_retval.append(plugin_str)
 
         return result_retval
+
+    def print_results(self, results):
+        print('\n')
+        for line in results:
+            print(line)
+        return self

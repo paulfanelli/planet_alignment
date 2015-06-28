@@ -22,5 +22,7 @@ def fix_main(request):
     return arg_list
 
 
-def test_main(fix_main):
+def test_main(fix_main, capsys):
     main(fix_main)
+    out, err = capsys.readouterr()
+    assert "align1: planet-A, planet-B" in str(out)
