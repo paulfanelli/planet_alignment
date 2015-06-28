@@ -40,4 +40,4 @@ def test_main(fix_main, capsys):
 def test_main_no_result(fix_main_no_result, capsys):
     main(fix_main_no_result)
     out, err = capsys.readouterr()
-    assert "\n\n" in str(out)
+    assert not str(out)
