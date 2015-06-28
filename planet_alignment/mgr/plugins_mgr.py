@@ -45,14 +45,14 @@ class PluginsManager(object):
                 print("ERROR: Unknown error loading plugin module '{}'".format(plugin_path))
                 sys.exit("ERROR: {}".format(e))
 
-    def get_plugin_module_by_path(self, path):
+    def _get_plugin_module_by_path(self, path):
         try:
             return self._plugin_modules[path]
         except KeyError as ke:
             print("WARNING: Plugin module {} not found.".format(ke))
             raise
 
-    def get_plugin_class_name(self, module):
+    def _get_plugin_class_name(self, module):
         clsmembers = inspect.getmembers(module, inspect.isclass)
         if len(clsmembers) == 0:
             return None
@@ -67,6 +67,15 @@ class PluginsManager(object):
                 if clsname != "BasePlugin":
                     return clsname
 
+    def get_plugin_class_by_path(self, path):
+        mod = self._get_plugin_module_by_path(path)
+        clsname = self._get_plugin_class_name(mod)
+        return getattr(mod, clsname)
+
+    def get_plugin_instance_by_path(self, path):
+        cls = self.get_plugin_class_by_path(path)
+        return cls()
+    
     def __iter__(self):
         return iter(self._plugins)
 
