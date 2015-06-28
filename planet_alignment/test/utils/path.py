@@ -37,12 +37,12 @@ def test_get_etc_dir():
     assert path.get_etc_dir() == join(PROJECTS_DIR, 'planet_alignment', 'etc')
 
 
-def test_get_plugins_dir():
-    assert path.get_plugins_dir() == join(PROJECTS_DIR, 'planet_alignment', 'plugins')
-
-
 def test_get_src_dir():
     assert path.get_src_dir() == join(PROJECTS_DIR, 'planet_alignment', 'planet_alignment')
+
+
+def test_get_plugins_dir():
+    assert path.get_plugins_dir() == join(PROJECTS_DIR, 'planet_alignment', 'planet_alignment', 'plugins')
 
 
 def test_get_test_dir():
