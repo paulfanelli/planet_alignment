@@ -10,10 +10,10 @@
 """
 import importlib
 import inspect
-import os
 import sys
 from zope.interface import implements
 from planet_alignment.mgr.interface import IPluginsManager
+from planet_alignment.utils.path import get_path_parts_tuple
 
 
 def append_sys_path(path):
@@ -33,8 +33,7 @@ class PluginsManager(object):
     def _load_plugin_modules(self):
         for plugin_path in self._plugins:
             try:
-                mod_dir, mod_file = os.path.split(plugin_path)
-                mod_name, mod_ext = os.path.splitext(mod_file)
+                mod_dir, mod_file, mod_name, mod_ext = get_path_parts_tuple(plugin_path)
                 append_sys_path(mod_dir)
                 imp_mod = importlib.import_module(mod_name)
                 self._plugin_modules[plugin_path] = imp_mod
@@ -75,7 +74,12 @@ class PluginsManager(object):
     def get_plugin_instance_by_path(self, path):
         cls = self.get_plugin_class_by_path(path)
         return cls()
-    
+
+    def get_plugin_name_by_path(self, path):
+        self._get_plugin_module_by_path(path)
+        _, _, mod_name, _ = get_path_parts_tuple(path)
+        return mod_name
+
     def __iter__(self):
         return iter(self._plugins)
 

@@ -8,6 +8,7 @@
 .. modulecreated:: 6/27/15
 
 """
+import inspect
 import pytest
 from planet_alignment.mgr.plugins_mgr import PluginsManager
 from planet_alignment.test import constants
@@ -55,9 +56,25 @@ def test_get_plugin_module_by_path(fix_plug):
     assert mod.foo == 1
 
 
-def test_get_plugin_module_by_bad_path(fix_plug):
+def test_get_plugin_module_by_bad_path(fix_plug, capsys):
     with pytest.raises(KeyError):
-        fix_plug._get_plugin_module_by_path("bad_path")
+        fix_plug._get_plugin_module_by_path('bad_path')
+    out, err = capsys.readouterr()
+    assert "WARNING: Plugin module 'bad_path' not found." in str(out)
+
+
+def test_get_plugin_class_by_path(fix_plug, capsys):
+    with pytest.raises(KeyError):
+        fix_plug.get_plugin_class_by_path('bad_path')
+    out, err = capsys.readouterr()
+    assert "WARNING: Plugin module 'bad_path' not found." in str(out)
+
+
+def test_get_plugin_instance_by_path(fix_plug, capsys):
+    with pytest.raises(KeyError):
+        fix_plug.get_plugin_instance_by_path('bad_path')
+    out, err = capsys.readouterr()
+    assert "WARNING: Plugin module 'bad_path' not found." in str(out)
 
 
 def test_align1_get_plugin_class_name(fix_align1):
@@ -66,7 +83,39 @@ def test_align1_get_plugin_class_name(fix_align1):
     assert clsname == 'Align1Plugin'
 
 
+def test_align1_get_plugin_class_by_path(fix_align1):
+    cls = fix_align1.get_plugin_class_by_path(constants.TEST_PLUGIN_ALIGN1)
+    c, t = inspect.getmembers(cls, inspect.isclass)[0]
+    assert c == '__class__'
+    assert isinstance(t, type)
+    assert "are_planets_aligned" in dir(cls)
+
+
+def test_align1_get_plugin_instance_by_path(fix_align1):
+    inst = fix_align1.get_plugin_class_by_path(constants.TEST_PLUGIN_ALIGN1)
+    c, t = inspect.getmembers(inst, inspect.isclass)[0]
+    assert c == '__class__'
+    assert isinstance(t, type)
+    assert "are_planets_aligned" in dir(inst)
+
+
 def test_base_get_plugin_class_name(fix_base):
     mod = fix_base._get_plugin_module_by_path(constants.TEST_PLUGIN_BASE)
     clsname = fix_base._get_plugin_class_name(mod)
     assert clsname == 'BasePlugin'
+
+
+def test_base_get_plugin_class_by_path(fix_base):
+    cls = fix_base.get_plugin_class_by_path(constants.TEST_PLUGIN_BASE)
+    c, t = inspect.getmembers(cls, inspect.isclass)[0]
+    assert c == '__class__'
+    assert isinstance(t, type)
+    assert "are_planets_aligned" in dir(cls)
+
+
+def test_base_get_plugin_instance_by_path(fix_base):
+    inst = fix_base.get_plugin_class_by_path(constants.TEST_PLUGIN_BASE)
+    c, t = inspect.getmembers(inst, inspect.isclass)[0]
+    assert c == '__class__'
+    assert isinstance(t, type)
+    assert "are_planets_aligned" in dir(inst)
