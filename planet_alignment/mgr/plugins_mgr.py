@@ -8,8 +8,16 @@
 .. modulecreated:: 6/27/15
 
 """
+import importlib
+import os
+import sys
 from zope.interface import implements
 from planet_alignment.mgr.interface import IPluginsManager
+
+
+def append_sys_path(path):
+    if path not in sys.path:
+        sys.path.append(path)
 
 
 class PluginsManager(object):
@@ -18,6 +26,30 @@ class PluginsManager(object):
     def __init__(self, plugins):
         assert isinstance(plugins, list)
         self._plugins = plugins
+        self._plugin_modules = {}
+        self._load_plugin_modules()
+
+    def _load_plugin_modules(self):
+        for plugin_path in self._plugins:
+            try:
+                mod_dir, mod_file = os.path.split(plugin_path)
+                mod_name, mod_ext = os.path.splitext(mod_file)
+                append_sys_path(mod_dir)
+                imp_mod = importlib.import_module(mod_name)
+                self._plugin_modules[plugin_path] = imp_mod
+            except ImportError as ie:
+                print("ERROR: Error importing module '{}'!".format(plugin_path))
+                sys.exit("ERROR: {}".format(ie))
+            except Exception as e:
+                print("ERROR: Unknown error loading plugin module '{}'".format(plugin_path))
+                sys.exit("ERROR: {}".format(e))
+
+    def get_plugin_module_by_path(self, path):
+        try:
+            return self._plugin_modules[path]
+        except KeyError as ke:
+            print("WARNING: Plugin module {} not found.".format(ke))
+            raise
 
     def __iter__(self):
         return iter(self._plugins)

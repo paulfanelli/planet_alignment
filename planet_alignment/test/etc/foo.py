@@ -8,3 +8,4 @@
 .. modulecreated:: 6/26/15
 
 """
+foo = 1

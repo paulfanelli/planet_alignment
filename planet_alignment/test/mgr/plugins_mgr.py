@@ -35,3 +35,14 @@ def test_valid_plugins_len(fix_plug):
 def test_invalid_plugins_list():
     with pytest.raises(AssertionError):
         PluginsManager(10)
+
+
+def test_get_plugin_module_by_path(fix_plug):
+    # module foo contains a dummy foo value of 1
+    mod = fix_plug.get_plugin_module_by_path(constants.TEST_PLUGIN_FOO)
+    assert mod.foo == 1
+
+
+def test_get_plugin_module_by_bad_path(fix_plug):
+    with pytest.raises(KeyError):
+        fix_plug.get_plugin_module_by_path("bad_path")
