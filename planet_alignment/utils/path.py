@@ -14,6 +14,7 @@ PROJECTS_DIR = dirname(dirname(dirname(dirname(__file__))))
 ROOT_DIR = dirname(dirname(dirname(__file__)))
 BIN_DIR = join(ROOT_DIR, 'bin')
 ETC_DIR = join(ROOT_DIR, 'etc')
+PLUGINS_DIR = join(ROOT_DIR, 'plugins')
 SRC_DIR = dirname(dirname(__file__))
 TEST_DIR = join(SRC_DIR, 'test')
 TEST_ETC_DIR = join(TEST_DIR, 'etc')
@@ -33,6 +34,10 @@ def get_bin_dir():
 
 def get_etc_dir():
     return ETC_DIR
+
+
+def get_plugins_dir():
+    return PLUGINS_DIR
 
 
 def get_src_dir():
