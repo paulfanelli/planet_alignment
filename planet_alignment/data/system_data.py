@@ -30,3 +30,6 @@ class SystemData(bunch.Bunch):
 
     def __iter__(self):
         return iter(self.system)
+
+    def __len__(self):
+        return len(self.system)

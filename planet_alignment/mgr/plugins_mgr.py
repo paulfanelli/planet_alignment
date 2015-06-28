@@ -21,3 +21,6 @@ class PluginsManager(object):
 
     def __iter__(self):
         return iter(self._plugins)
+
+    def __len__(self):
+        return len(self._plugins)

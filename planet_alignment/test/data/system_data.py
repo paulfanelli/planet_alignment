@@ -47,6 +47,10 @@ def test_system_data(fix_sd):
     assert item.period == 60
 
 
+def test_system_data_len(fix_sd):
+    assert len(fix_sd) == 3
+
+
 def test_none_system_data(capsys):
     with pytest.raises(SystemExit):
         SystemData(None)

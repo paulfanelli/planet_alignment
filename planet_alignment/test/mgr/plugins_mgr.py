@@ -15,10 +15,7 @@ from planet_alignment.test import constants
 
 @pytest.fixture(scope='module')
 def fix_plug():
-    plugins_list = [
-        constants.TEST_PLUGIN_FOO,
-        constants.TEST_PLUGIN_BAR
-    ]
+    plugins_list = constants.TEST_PLUGIN_LIST_FOO_BAR
     return PluginsManager(plugins_list)
 
 
@@ -29,6 +26,10 @@ def test_valid_plugins_list(fix_plug):
 
     item = it.next()
     assert item == constants.TEST_PLUGIN_BAR
+
+
+def test_valid_plugins_len(fix_plug):
+    assert len(fix_plug) == 2
 
 
 def test_invalid_plugins_list():
