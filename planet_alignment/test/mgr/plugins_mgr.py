@@ -19,6 +19,18 @@ def fix_plug():
     return PluginsManager(plugins_list)
 
 
+@pytest.fixture(scope='module')
+def fix_align1():
+    plugins_list = constants.TEST_PLUGIN_LIST_ALIGN1
+    return PluginsManager(plugins_list)
+
+
+@pytest.fixture(scope='module')
+def fix_base():
+    plugins_list = constants.TEST_PLUGIN_LIST_BASE
+    return PluginsManager(plugins_list)
+
+
 def test_valid_plugins_list(fix_plug):
     it = iter(fix_plug)
     item = it.next()
@@ -46,3 +58,15 @@ def test_get_plugin_module_by_path(fix_plug):
 def test_get_plugin_module_by_bad_path(fix_plug):
     with pytest.raises(KeyError):
         fix_plug.get_plugin_module_by_path("bad_path")
+
+
+def test_align1_get_plugin_class_name(fix_align1):
+    mod = fix_align1.get_plugin_module_by_path(constants.TEST_PLUGIN_ALIGN1)
+    clsname = fix_align1.get_plugin_class_name(mod)
+    assert clsname == 'Align1Plugin'
+
+
+def test_base_get_plugin_class_name(fix_base):
+    mod = fix_base.get_plugin_module_by_path(constants.TEST_PLUGIN_BASE)
+    clsname = fix_base.get_plugin_class_name(mod)
+    assert clsname == 'BasePlugin'

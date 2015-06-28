@@ -9,6 +9,7 @@
 
 """
 import importlib
+import inspect
 import os
 import sys
 from zope.interface import implements
@@ -50,6 +51,21 @@ class PluginsManager(object):
         except KeyError as ke:
             print("WARNING: Plugin module {} not found.".format(ke))
             raise
+
+    def get_plugin_class_name(self, module):
+        clsmembers = inspect.getmembers(module, inspect.isclass)
+        if len(clsmembers) == 0:
+            return None
+        if len(clsmembers) == 1:
+            # there is only one class, return it's name
+            return clsmembers[0][0]
+        else:
+            # there is more that one, iterate through,
+            # returning the 1st non-base class
+            for c in clsmembers:
+                clsname = c[0]
+                if clsname != "BasePlugin":
+                    return clsname
 
     def __iter__(self):
         return iter(self._plugins)
