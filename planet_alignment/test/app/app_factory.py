@@ -20,7 +20,7 @@ def fix_af():
     test_etc_dir = constants.TEST_ETC_DIR
     config_file = constants.TEST_SYSTEM_YAML
     plugins = '{0}/foo.py {0}/bar.py'.format(test_etc_dir)
-    arg_str = '--config {} --plugins {} --time 10'.format(config_file, plugins).split()
+    arg_str = '--config {} --plugins {} --time 0.5'.format(config_file, plugins).split()
     cmd_args = CommandParser().parse(arg_str)
     return AppFactory(cmd_args)
 

@@ -47,9 +47,9 @@ class CommandParser(object):
                             '-t',
                             action='store',
                             dest='time',
-                            help='The time to calculate the planet alignment for',
+                            help='The time to calculate the planet alignment for, as a float',
                             required=True,
-                            type=int)
+                            type=float)
         self._parser = parser
         return self
 

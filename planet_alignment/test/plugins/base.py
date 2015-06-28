@@ -56,6 +56,21 @@ def test_calculate_alignment_angle_radians_0(fix_base, fix_sd_a):
     assert angle_rad == float(0)
 
 
+def test_calculate_alignment_angle_radians_0p1(fix_base, fix_sd_a):
+    angle_rad = fix_base.calculate_alignment_angle_radians(fix_sd_a, 0.1)
+    assert angle_rad == 0.031415926535897934
+
+
+def test_calculate_alignment_angle_radians_0p5(fix_base, fix_sd_a):
+    angle_rad = fix_base.calculate_alignment_angle_radians(fix_sd_a, 0.5)
+    assert angle_rad == 0.15707963267948966
+
+
+def test_calculate_alignment_angle_radians_1p0(fix_base, fix_sd_a):
+    angle_rad = fix_base.calculate_alignment_angle_radians(fix_sd_a, 1.0)
+    assert angle_rad == 0.3141592653589793
+
+
 def test_calculate_alignment_angle_radians_10(fix_base, fix_sd_a):
     angle_rad = fix_base.calculate_alignment_angle_radians(fix_sd_a, 10)
     assert angle_rad == float(math.pi)
@@ -77,6 +92,24 @@ def test_are_angles_aligned_a0_b0(fix_base, fix_sd_a, fix_sd_b):
     assert fix_base.are_angles_aligned(angle_rad_a, angle_rad_b)
 
 
+def test_are_angles_aligned_a0p1_b0p1(fix_base, fix_sd_a, fix_sd_b):
+    angle_rad_a = fix_base.calculate_alignment_angle_radians(fix_sd_a, 0.1)
+    angle_rad_b = fix_base.calculate_alignment_angle_radians(fix_sd_b, 0.1)
+    assert fix_base.are_angles_aligned(angle_rad_a, angle_rad_b)
+
+
+def test_are_angles_aligned_a0p5_b0p5(fix_base, fix_sd_a, fix_sd_b):
+    angle_rad_a = fix_base.calculate_alignment_angle_radians(fix_sd_a, 0.5)
+    angle_rad_b = fix_base.calculate_alignment_angle_radians(fix_sd_b, 0.5)
+    assert not fix_base.are_angles_aligned(angle_rad_a, angle_rad_b)
+
+
+def test_are_angles_aligned_a1p0_b1p0(fix_base, fix_sd_a, fix_sd_b):
+    angle_rad_a = fix_base.calculate_alignment_angle_radians(fix_sd_a, 1.0)
+    angle_rad_b = fix_base.calculate_alignment_angle_radians(fix_sd_b, 1.0)
+    assert not fix_base.are_angles_aligned(angle_rad_a, angle_rad_b)
+
+
 def test_are_angles_aligned_a10_b10(fix_base, fix_sd_a, fix_sd_b):
     angle_rad_a = fix_base.calculate_alignment_angle_radians(fix_sd_a, 10)
     angle_rad_b = fix_base.calculate_alignment_angle_radians(fix_sd_b, 10)
@@ -89,6 +122,18 @@ def test_are_planets_aligned_a0_a0(fix_base, fix_sd_a):
 
 def test_are_planets_aligned_a0_b0(fix_base, fix_sd_a, fix_sd_b):
     assert fix_base.are_planets_aligned(fix_sd_a, fix_sd_b, 0)
+
+
+def test_are_planets_aligned_a0p1_b0p1(fix_base, fix_sd_a, fix_sd_b):
+    assert fix_base.are_planets_aligned(fix_sd_a, fix_sd_b, 0.1)
+
+
+def test_are_planets_aligned_a0p5_b0p5(fix_base, fix_sd_a, fix_sd_b):
+    assert not fix_base.are_planets_aligned(fix_sd_a, fix_sd_b, 0.5)
+
+
+def test_are_planets_aligned_a1p0_b1p0(fix_base, fix_sd_a, fix_sd_b):
+    assert not fix_base.are_planets_aligned(fix_sd_a, fix_sd_b, 1.0)
 
 
 def test_are_planets_aligned_a10_b10(fix_base, fix_sd_a, fix_sd_b):
