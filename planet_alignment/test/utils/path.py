@@ -51,3 +51,11 @@ def test_get_test_dir():
 
 def test_get_test_etc_dir():
     assert path.get_test_etc_dir() == join(PROJECTS_DIR, 'planet_alignment', 'planet_alignment', 'test', 'etc')
+
+
+def test_get_path_parts_tuple():
+    d, f, n, e = path.get_path_parts_tuple('/foo/bar/baz.py')
+    assert d == '/foo/bar'
+    assert f == 'baz.py'
+    assert n == 'baz'
+    assert e == '.py'

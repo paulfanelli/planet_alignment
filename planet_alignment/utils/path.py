@@ -8,6 +8,7 @@
 .. modulecreated:: 6/26/15
 
 """
+import os
 from os.path import dirname, join
 
 PROJECTS_DIR = dirname(dirname(dirname(dirname(__file__))))
@@ -50,3 +51,9 @@ def get_test_dir():
 
 def get_test_etc_dir():
     return TEST_ETC_DIR
+
+
+def get_path_parts_tuple(path):
+    dir_part, file_part = os.path.split(path)
+    name_part, ext_part = os.path.splitext(file_part)
+    return dir_part, file_part, name_part, ext_part
