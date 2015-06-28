@@ -46,7 +46,7 @@ def test_app(fix_app):
 def test_app_run(fix_app, capsys):
     fix_app.run()
     out, err = capsys.readouterr()
-    assert "object has no attribute" in str(out)
+    assert "Plugin class not found" in str(out)
 
 
 def test_align1_run(fix_align1):

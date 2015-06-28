@@ -24,8 +24,12 @@ class App(object):
         result_retval = []
 
         for plugin_path in self._plugins:
-            plugin_inst = self._plugins.get_plugin_instance_by_path(plugin_path)
-            plugin_name = self._plugins.get_plugin_name_by_path(plugin_path)
+            try:
+                plugin_inst = self._plugins.get_plugin_instance_by_path(plugin_path)
+                plugin_name = self._plugins.get_plugin_name_by_path(plugin_path)
+            except (KeyError, AttributeError) as e:
+                print("WARNING: {}".format(e))
+                continue
 
             plugin_str = ''
             unique_aligned_list = []

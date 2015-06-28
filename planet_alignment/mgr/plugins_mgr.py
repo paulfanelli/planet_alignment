@@ -54,7 +54,7 @@ class PluginsManager(object):
     def _get_plugin_class_name(self, module):
         clsmembers = inspect.getmembers(module, inspect.isclass)
         if len(clsmembers) == 0:
-            return None
+            raise AttributeError("Plugin class not found")
         if len(clsmembers) == 1:
             # there is only one class, return it's name
             return clsmembers[0][0]
