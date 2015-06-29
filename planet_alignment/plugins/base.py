@@ -57,7 +57,6 @@ class BasePlugin(object):
         period = float(planet_data.period)
         time = float(time)
         angle = theta + (2 * math.pi * time / period)
-        assert isinstance(angle, float)
         return angle
 
     def are_angles_aligned(self, angle_x, angle_y):
