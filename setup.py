@@ -13,7 +13,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'alignment = planet_alignment.__main__:main'
+            'planet_alignment = planet_alignment.__main__:main'
         ]
     }
 )
