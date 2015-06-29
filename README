@@ -33,7 +33,21 @@ How to run it:
 
     This should output:
 
-    align1: planet-A, planet-B
+        align1: planet-A, planet-B
+
+
+    You can also specify more that one plugin at a time:
+
+    planet_alignment --config /etc/planet_alignment/system.yaml \
+                     --plugins /etc/planet_alignment/align1.py \
+                     --plugins /etc/planet_alignment/align2.py \
+                     --time 0.1
+
+    This should output:
+
+        align1: planet-A, planet-B
+
+        align2: planet-A, planet-B
 
 
 Additional info:
