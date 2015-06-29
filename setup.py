@@ -6,7 +6,9 @@ setup(
     packages=['planet_alignment', 'planet_alignment.test'],
     url='https://github.com/paulfanelli/planet_alignment.git',
     license='MIT',
-    author='pfanelli',
+    author='Paul Fanelli',
     author_email='paul.fanelli@gmail.com',
-    description='Planet Alignment program'
+    description='Planet Alignment program',
+    requires=['bunch', 'zope.interface', 'PyYAML'],
+    tests_require=['pytest']
 )
