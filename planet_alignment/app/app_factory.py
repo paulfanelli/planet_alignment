@@ -17,6 +17,13 @@ from planet_alignment.mgr.plugins_mgr import PluginsManager
 
 
 class AppFactory(object):
+    """This is the class factory for the App.
+
+    - **parameters** and **types**::
+
+        :param cmd_args: The command-line args.
+        :type cmd_args: argparse Namespace
+    """
     implements(IAppFactory)
 
     def __init__(self, cmd_args):
@@ -26,4 +33,9 @@ class AppFactory(object):
         self._time = cmd_args.time
 
     def create(self):
+        """Returns the created App object.
+
+            :return: Returns the App object.
+            :rtype: App class.
+        """
         return App(self._system_data, self._plugins, self._time)
