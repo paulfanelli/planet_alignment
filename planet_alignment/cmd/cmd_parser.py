@@ -15,6 +15,13 @@ from planet_alignment.cmd.interface import ICommandParser
 
 
 class CommandParser(object):
+    """This class handles the command-line parsing.
+
+    - **parameters** and **types**::
+
+        None
+    """
+
     implements(ICommandParser)
 
     def __init__(self):
@@ -87,4 +94,11 @@ class CommandParser(object):
         return ','.join(retval_list)
 
     def parse(self, args):
+        """Parse the command-line arguments.
+
+            :param args: The command-line args.
+            :type args: list
+            :return: Returns the parsed command-line arguments.
+            :rtype: argparse.Namespace
+        """
         return self._parser.parse_args(args)

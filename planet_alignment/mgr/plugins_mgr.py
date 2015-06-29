@@ -22,6 +22,13 @@ def append_sys_path(path):
 
 
 class PluginsManager(object):
+    """This class manages the python file plugins.
+
+    - **parameters** and **types**::
+
+        :param plugins: The list of python file plugins.
+        :type plugins: list
+    """
     implements(IPluginsManager)
 
     def __init__(self, plugins):
@@ -67,15 +74,36 @@ class PluginsManager(object):
                     return clsname
 
     def get_plugin_class_by_path(self, path):
+        """Get the plugin class by the plugin file path
+
+            :param path: The path to the python plugin file.
+            :type path: str
+            :return: Returns the plugin class.
+            :rtype: Plugin class.
+        """
         mod = self._get_plugin_module_by_path(path)
         clsname = self._get_plugin_class_name(mod)
         return getattr(mod, clsname)
 
     def get_plugin_instance_by_path(self, path):
+        """Get the plugin class instance by the plugin file path
+
+            :param path: The path to the python plugin file.
+            :type path: str
+            :return: Returns the plugin class instance.
+            :rtype: Plugin class instance.
+        """
         cls = self.get_plugin_class_by_path(path)
         return cls()
 
     def get_plugin_name_by_path(self, path):
+        """Get the plugin name by the plugin file path
+
+            :param path: The path to the python plugin file.
+            :type path: str
+            :return: Returns the plugin name.
+            :rtype: str
+        """
         self._get_plugin_module_by_path(path)
         _, _, mod_name, _ = get_path_parts_tuple(path)
         return mod_name

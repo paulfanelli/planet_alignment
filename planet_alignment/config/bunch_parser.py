@@ -16,12 +16,26 @@ from planet_alignment.config.interface import IBunchParser
 
 
 class BunchParser(object):
+    """This class handles the parsing the system data using the bunch library module.
+
+    - **parameters** and **types**::
+
+        None.
+    """
+
     implements(IBunchParser)
 
     def __init__(self):
         self._data = None
 
     def parse(self, path):
+        """Parse the system data contained in a YAML configuration file.
+
+            :param path: The path to the YAML configuration file.
+            :type path: str
+            :return: Returns the parsed system data as a Bunch object.
+            :rtype: Bunch object.
+        """
         try:
             with open(path) as f:
                 self._data = fromYAML(f)

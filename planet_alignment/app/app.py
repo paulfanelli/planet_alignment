@@ -13,20 +13,36 @@ from planet_alignment.app.interface import IApp
 
 
 class App(object):
+    """This class houses the main application and runs the planet alignment.
+
+    - **parameters** and **types**::
+
+        :param system_data: The system data object containing planet alignment data.
+        :param plugins_mgr: The plugins manager object containing a list of plugins.
+        :param time: The amount of time to calculate the alignment for.
+        :type system_data: SystemData object.
+        :type plugins_mgr: PluginsManager object.
+        :type time: float
+    """
     implements(IApp)
 
-    def __init__(self, system_data, plugins, time):
+    def __init__(self, system_data, plugins_mgr, time):
         self._system_data = system_data
-        self._plugins = plugins
+        self._plugins_mgr = plugins_mgr
         self._time = time
 
     def run(self):
+        """Runs the planet alignment algorithm.
+
+            :return: Returns a list of results, if there are any, else an empty list.
+            :rtype: list
+        """
         result_retval = []
 
-        for plugin_path in self._plugins:
+        for plugin_path in self._plugins_mgr:
             try:
-                plugin_inst = self._plugins.get_plugin_instance_by_path(plugin_path)
-                plugin_name = self._plugins.get_plugin_name_by_path(plugin_path)
+                plugin_inst = self._plugins_mgr.get_plugin_instance_by_path(plugin_path)
+                plugin_name = self._plugins_mgr.get_plugin_name_by_path(plugin_path)
             except (KeyError, AttributeError) as e:
                 print("WARNING: {}".format(e))
                 continue
@@ -69,6 +85,13 @@ class App(object):
         return result_retval
 
     def print_results(self, results):
+        """Prints the results from the run of the planet alignment algorithm.
+
+            :param results: List of the results output data.
+            :type results: list
+            :return: Returns the self reference.
+            :rtype: App class.
+        """
         print('\n')
         for line in results:
             print(line)

@@ -46,6 +46,7 @@ def test_valid_options(fix_parser):
     plugins = '{0}/foo.py {0}/bar.py'.format(test_etc_dir)
     plugins_list = constants.TEST_PLUGIN_LIST_FOO_BAR
     parsed = fix_parser.parse('--config {} --plugins {} --time 10.0'.format(config_file, plugins).split())
+    print("!!!!!!!! parsed type is {}".format(type(parsed)))
     assert parsed.config == config_file
     assert parsed.plugins == plugins_list
     assert parsed.time == 10.0

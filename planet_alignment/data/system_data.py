@@ -16,6 +16,16 @@ from planet_alignment.data.interface import ISystemData
 
 
 class SystemData(bunch.Bunch):
+    """This class houses the system data as a bunch object.
+
+    The system data consists of a name, theta, radius and period for each planet.
+
+    - **parameters** and **types**::
+
+        :param data: The system data as a bunch object.
+        :type data: Bunch object.
+    """
+
     implements(ISystemData)
 
     def __init__(self, data):

@@ -9,5 +9,5 @@
 
 """
 
-# Set the default alignment delta, in radians
+# Set the default alignment delta, in degrees
 DEFAULT_ALIGNMENT_DELTA_DEGREES = 5
