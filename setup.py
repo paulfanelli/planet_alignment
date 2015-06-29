@@ -1,5 +1,10 @@
 import os
-from setuptools import setup
+
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
 
 # Utility function to read the README file, used for the long desc.
 def read(fn):
@@ -26,7 +31,7 @@ setup(
     author_email='paul.fanelli@gmail.com',
     description='Planet Alignment program',
     long_description=read('README'),
-    requires=['bunch', 'zope.interface', 'PyYAML'],
+    install_requires=['bunch', 'zope.interface', 'PyYAML'],
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
