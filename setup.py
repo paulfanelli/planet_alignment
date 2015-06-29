@@ -40,6 +40,6 @@ setup(
     },
     include_package_data=True,
     data_files=[
-        ('/etc/planet_alignment', ['align1.py', 'align2.py', 'system.yaml'])
+        ('/etc/planet_alignment', ['etc/align1.py', 'etc/align2.py', 'etc/system.yaml'])
     ]
 )
