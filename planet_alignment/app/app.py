@@ -93,7 +93,6 @@ class App(object):
             :return: Returns the self reference.
             :rtype: App class.
         """
-        print('\n')
         for line in results:
             print(line)
         return self
