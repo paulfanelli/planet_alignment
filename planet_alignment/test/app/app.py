@@ -49,8 +49,8 @@ def fix_align1_no_result(request):
 def test_app(fix_app):
     assert isinstance(fix_app._system_data, SystemData)
     assert len(fix_app._system_data) == 3
-    assert isinstance(fix_app._plugins, PluginsManager)
-    assert len(fix_app._plugins) == 2
+    assert isinstance(fix_app._plugins_mgr, PluginsManager)
+    assert len(fix_app._plugins_mgr) == 2
     assert isinstance(fix_app._time, float)
 
 

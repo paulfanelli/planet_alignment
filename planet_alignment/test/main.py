@@ -9,7 +9,7 @@
 
 """
 import pytest
-from planet_alignment.alignment import main
+from planet_alignment.__main__ import main
 from planet_alignment.test import constants
 
 

@@ -10,5 +10,10 @@ setup(
     author_email='paul.fanelli@gmail.com',
     description='Planet Alignment program',
     requires=['bunch', 'zope.interface', 'PyYAML'],
-    tests_require=['pytest']
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'alignment = planet_alignment.__main__:main'
+        ]
+    }
 )
