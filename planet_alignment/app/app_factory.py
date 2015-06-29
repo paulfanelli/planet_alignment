@@ -1,7 +1,7 @@
 """
 .. module:: app_factory
    :platform: linux
-   :synopsis: 
+   :synopsis: The class factory to create the application App.
 
 .. moduleauthor:: Paul Fanelli <paul.fanelli@gmail.com>
 
