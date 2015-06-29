@@ -56,7 +56,7 @@ class BasePlugin(object):
         theta = float(planet_data.theta)
         period = float(planet_data.period)
         time = float(time)
-        angle = theta + 2 * math.pi * time / period
+        angle = theta + (2 * math.pi * time / period)
         assert isinstance(angle, float)
         return angle
 
