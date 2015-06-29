@@ -1,1 +1,49 @@
-TODO: a placeholder for the initial directory structure, need to fill this in
+README file for the Planet Alignment program.
+
+How to get it:
+    git clone git@github.com:paulfanelli/planet_alignment.git
+
+        -- OR --
+
+    git clone https://github.com/paulfanelli/planet_alignment.git
+
+
+How to install it:
+    cd to where you 'git cloned' it:
+        cd /home/<USER>/python-devel/planet_alignment
+
+    Run the python setup.py script:
+        sudo python setup.py install
+
+    This will put an executable in /usr/bin (or /usr/local/bin), and
+    will put some configuration files in /etc/planet_alignment.
+
+
+How to run it:
+
+    planet_alignment --config /etc/planet_alignment/system.yaml \
+                     --plugins /etc/planet_alignment/align1.py \
+                     --time 0.1
+
+        -- OR -- (use the shorter options...)
+
+    planet_alignment -c /etc/planet_alignment/system.yaml \
+                     -p /etc/planet_alignment/align1.py \
+                     -t 0.1
+
+    This should output:
+
+    align1: planet-A, planet-B
+
+
+Additional info:
+
+    Both the align1.py and align2.py files are derived from the base plugin.
+    The base plugin is located in the site-packages (for your python installation):
+
+    /usr/lib/python2.7/site-packages/planet_alignment-1.0.0-py2.7.egg/planet_alignment/plugins/base.py
+
+    The align1.py file is derived from BasePlugin (in the base.py file) without any of the methods being overridden.
+    It's just a convenience plugin file, to run the base-line, without having to load the plugin from the deep path.
+
+    The align2.py file is also derived from BasePlugin, but changes the default value of the alignment delta value.
