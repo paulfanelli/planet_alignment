@@ -1,7 +1,7 @@
 """
 .. module:: align1
    :platform: linux
-   :synopsis: 
+   :synopsis: A python alignment file plugin, derived from the base plugin.
 
 .. moduleauthor:: Paul Fanelli <paul.fanelli@gmail.com>
 
