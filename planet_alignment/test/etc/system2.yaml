@@ -1,0 +1,13 @@
+system:
+  - name: planet-A
+    theta: 0
+    radius: 1
+    period: 20
+  - name: planet-B
+    theta: 0
+    radius: 5
+    period: 30
+  - name: planet-C
+    theta: 0
+    radius: 10
+    period: 60

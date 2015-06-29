@@ -37,6 +37,26 @@ def fix_align1(request):
 
 
 @pytest.fixture(scope='module',
+                params=[0])
+def fix_align2(request):
+    config_file = constants.TEST_SYSTEM_YAML
+    data = BunchParser().parse(config_file)
+    sd = SystemData(data)
+    plugins = PluginsManager(constants.TEST_PLUGIN_LIST_ALIGN2)
+    return App(sd, plugins, request.param)
+
+
+@pytest.fixture(scope='module',
+                params=[0.1])
+def fix_align2_2(request):
+    config_file = constants.TEST_SYSTEM2_YAML
+    data = BunchParser().parse(config_file)
+    sd = SystemData(data)
+    plugins = PluginsManager(constants.TEST_PLUGIN_LIST_ALIGN2)
+    return App(sd, plugins, request.param)
+
+
+@pytest.fixture(scope='module',
                 params=[2, 2.0, 10, 10.0])
 def fix_align1_no_result(request):
     config_file = constants.TEST_SYSTEM_YAML
@@ -68,3 +88,15 @@ def test_align1_run(fix_align1):
 def test_align1_run_no_result(fix_align1_no_result):
     r = fix_align1_no_result.run()
     assert r == []
+
+
+def test_align2_run(fix_align2):
+    r = fix_align2.run()
+    # print(">>>>>>>>> r is {}".format(r))
+    assert r[0] == 'align2: planet-A, planet-B\n'
+
+
+def test_align2_2_run(fix_align2_2):
+    r = fix_align2_2.run()
+    # print(">>>>>>>>> r is {}".format(r))
+    assert r[0] == 'align2: planet-A, planet-B\nalign2: planet-A, planet-B, planet-C\nalign2: planet-B, planet-C\n'

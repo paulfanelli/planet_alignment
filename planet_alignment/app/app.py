@@ -75,10 +75,10 @@ class App(object):
                     if aligned_list not in unique_aligned_list:
                         unique_aligned_list.append(aligned_list)
 
-                        for unique_aligned_entry in unique_aligned_list:
-                            plugin_str += plugin_name + ': '
-                            aligned_str = ', '.join(unique_aligned_entry)
-                            plugin_str += aligned_str + '\n'
+            for unique_aligned_entry in unique_aligned_list:
+                plugin_str += plugin_name + ': '
+                aligned_str = ', '.join(unique_aligned_entry)
+                plugin_str += aligned_str + '\n'
 
             if plugin_str:
                 result_retval.append(plugin_str)
