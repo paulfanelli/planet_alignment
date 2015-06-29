@@ -38,6 +38,9 @@ How to run it:
 
 Additional info:
 
+    The planet system data is configured in the YAML configuration file, system.yaml, found in /etc/planet_alignment.
+    The data consists of a name, theta, radius and period for each planet.
+
     Both the align1.py and align2.py files are derived from the base plugin.
     The base plugin is located in the site-packages (for your python installation):
 
