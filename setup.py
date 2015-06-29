@@ -38,5 +38,8 @@ setup(
             'planet_alignment = planet_alignment.__main__:main'
         ]
     },
-    include_package_data=True
+    include_package_data=True,
+    data_files=[
+        ('/etc/planet_alignment', ['align1.py', 'align2.py', 'system.yaml'])
+    ]
 )
